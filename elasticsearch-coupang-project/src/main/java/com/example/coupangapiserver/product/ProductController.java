@@ -2,6 +2,7 @@ package com.example.coupangapiserver.product;
 
 import com.example.coupangapiserver.product.domain.Product;
 import com.example.coupangapiserver.product.dto.CreateProductRequestDto;
+
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,21 +24,28 @@ public class ProductController {
         this.productService = productService;
     }
 
-    //페이지별 상품 전체 조회
+    // 페이지별 상품 전체 조회
     @GetMapping()
     public ResponseEntity<List<Product>> getProducts(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
         List<Product> products = productService.getProducts(page, size);
         return ResponseEntity.ok(products);
     }
 
-    //상품 등록
+    // 자동 완성
+    @GetMapping("/suggestions")
+    public ResponseEntity<List<String>> getSuggestions(@RequestParam String query) {
+        List<String> suggestions = productService.getSuggestions(query);
+        return ResponseEntity.ok(suggestions);
+    }
+
+    // 상품 등록
     @PostMapping()
     public ResponseEntity<Product> createProduct(@RequestBody CreateProductRequestDto createProductRequestDto) {
         Product product = productService.createProduct(createProductRequestDto);
         return ResponseEntity.ok(product);
     }
 
-    //상품 삭제
+    // 상품 삭제
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
