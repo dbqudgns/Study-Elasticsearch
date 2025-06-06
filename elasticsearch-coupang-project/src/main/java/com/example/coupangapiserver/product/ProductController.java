@@ -23,19 +23,21 @@ public class ProductController {
         this.productService = productService;
     }
 
+    //페이지별 상품 전체 조회
     @GetMapping()
     public ResponseEntity<List<Product>> getProducts(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
         List<Product> products = productService.getProducts(page, size);
         return ResponseEntity.ok(products);
     }
 
-
+    //상품 등록
     @PostMapping()
     public ResponseEntity<Product> createProduct(@RequestBody CreateProductRequestDto createProductRequestDto) {
         Product product = productService.createProduct(createProductRequestDto);
         return ResponseEntity.ok(product);
     }
 
+    //상품 삭제
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
