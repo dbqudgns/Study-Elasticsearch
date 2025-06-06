@@ -3,6 +3,8 @@ package com.example.coupangapiserver.product;
 import com.example.coupangapiserver.product.domain.Product;
 import com.example.coupangapiserver.product.dto.CreateProductRequestDto;
 import java.util.List;
+
+import com.example.coupangapiserver.repository.ProductRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

@@ -6,9 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
+import lombok.Getter;
 
 @Entity
 @Table(name = "products")
+@Getter
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +31,7 @@ public class Product {
     public Product() {
     }
 
+    @Builder
     public Product(String name, String description, int price, double rating, String category) {
         this.name = name;
         this.description = description;
@@ -36,27 +40,4 @@ public class Product {
         this.category = category;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public String getCategory() {
-        return category;
-    }
 }
