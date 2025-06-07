@@ -9,7 +9,9 @@ spring:
       ddl-auto: update
     show-sql: true
   elasticsearch:
-    uris : http://localhost:9200
+    uris : ${Ela_endpoint}
+    username : ${Ela_username}
+    password : ${Ela_password}
 
 logging :
   level:
